@@ -29,8 +29,23 @@ jobs:
         run: |
           $app = Get-ChildItem release/windows/*-Portable.exe | Select-Object -First 1
           if (-not $app) { throw "Portable executable was not produced" }
-          $process = Start-Process -FilePath $app.FullName -ArgumentList "--smoke-test" -PassThru -Wait
+          $process = Start-Process -FilePath $app.FullName -ArgumentList "--smoke-test" -PassThru
+          if (-not $process.WaitForExit(30000)) { $process.Kill(); throw "Portable app smoke test timed out" }
           if ($process.ExitCode -ne 0) { throw "Quiver desktop smoke test failed with exit code $($process.ExitCode)" }
+      - name: Install NSIS package and verify installed app
+        shell: pwsh
+        run: |
+          $installer = Get-ChildItem release/windows/*-Setup.exe | Select-Object -First 1
+          if (-not $installer) { throw "NSIS installer was not produced" }
+          $installDir = Join-Path $env:RUNNER_TEMP "QuiverSmoke"
+          $setup = Start-Process -FilePath $installer.FullName -ArgumentList @("/S", "/D=$installDir") -PassThru
+          if (-not $setup.WaitForExit(120000)) { $setup.Kill(); throw "NSIS install timed out" }
+          if ($setup.ExitCode -ne 0) { throw "NSIS install failed with exit code $($setup.ExitCode)" }
+          $installedApp = Join-Path $installDir "Quiver Partical Field.exe"
+          if (-not (Test-Path $installedApp)) { throw "Installed Quiver executable was not found" }
+          $process = Start-Process -FilePath $installedApp -ArgumentList "--smoke-test" -PassThru
+          if (-not $process.WaitForExit(30000)) { $process.Kill(); throw "Installed app smoke test timed out" }
+          if ($process.ExitCode -ne 0) { throw "Installed app smoke test failed with exit code $($process.ExitCode)" }
       - uses: actions/upload-artifact@v4
         with:
           name: quiver-windows-installer
