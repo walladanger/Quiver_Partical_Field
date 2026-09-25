@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07090c" />
+    <title>Quiver Partical Field</title>
+  </head>
+  <body>
+    <div class="app">
+      <header class="top">
+        <div class="brand"><div class="mark">Q</div><div><div class="eyebrow">Equation driven graphics engine</div><h1>QUIVER PARTICAL FIELD</h1></div></div>
+        <div class="top-meta" id="status" role="status"></div>
+      </header>
+      <main class="stage">
+        <canvas id="field" aria-label="Interactive three-dimensional equation particle field"></canvas>
+        <div class="hud glass"><strong>3D EQUATION UNIVERSE</strong><br />t = <span id="clock">0.00</span> &nbsp;·&nbsp; particles <span id="particle-total">420</span><br />Drag orbit &nbsp;·&nbsp; Shift/right drag pan &nbsp;·&nbsp; scroll zoom</div>
+        <div class="tools"><button class="icon-button" id="reset-camera" title="Reset view" aria-label="Reset camera">◎</button><button class="icon-button" id="restart" title="Restart simulation" aria-label="Restart simulation">↻</button><button class="icon-button" id="fullscreen" title="Toggle fullscreen" aria-label="Toggle fullscreen">⛶</button></div>
+      </main>
+      <form class="bottom" id="equation-form">
+        <div class="equation"><label for="equation">Equation</label><input id="equation" autocomplete="off" spellcheck="false" aria-label="Simulation equation" /><button class="action primary" type="submit">Apply</button></div>
+        <div class="controls"><select id="presets" aria-label="Equation preset"></select><select id="count" aria-label="Particle count"><option value="240">240 particles</option><option value="420" selected>420 particles</option><option value="720">720 particles</option><option value="1000">1000 particles</option></select><button class="action" id="play" type="button" aria-pressed="true">Pause</button></div>
+        <div class="toggles"><label><input type="checkbox" id="trails" checked /> Trails</label><span class="divider"></span><span>Complexity <b id="complexity">0</b></span><span class="divider"></span><span>Variant <b id="variation">0</b></span><button class="action" id="reroll" type="button">Variation +</button></div>
+      </form>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
