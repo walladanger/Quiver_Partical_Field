@@ -1,0 +1,20 @@
+appId: com.walladanger.quiverparticalfield
+productName: Quiver Partical Field
+directories:
+  app: desktop/windows
+  output: release/windows
+files:
+  - dist/**/*
+  - main.cjs
+  - package.json
+win:
+  target:
+    - nsis
+    - portable
+  artifactName: Quiver-Partical-Field-${version}-${arch}.${ext}
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Quiver Partical Field

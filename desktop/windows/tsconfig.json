@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "types": ["vite/client", "node"]
+  },
+  "include": [
+    "src/main.ts",
+    "../../src/lib/field/equation.ts",
+    "../../src/lib/field/dynamics-3d.ts",
+    "../../src/lib/field/interactions.ts"
+  ]
+}

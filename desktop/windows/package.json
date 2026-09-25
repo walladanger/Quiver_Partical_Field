@@ -1,0 +1,8 @@
+{
+  "name": "quiver-partical-field",
+  "version": "0.1.0",
+  "description": "Equation-driven 3D particle field desktop application.",
+  "main": "main.cjs",
+  "author": "Warwick Bartrum",
+  "license": "Unlicense"
+}
