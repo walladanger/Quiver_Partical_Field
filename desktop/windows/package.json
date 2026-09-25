@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Equation-driven 3D particle field desktop application.",
   "main": "main.cjs",
+  "type": "module",
   "author": "Warwick Bartrum",
   "license": "Unlicense"
 }

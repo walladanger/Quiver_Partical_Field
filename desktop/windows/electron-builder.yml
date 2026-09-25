@@ -7,14 +7,18 @@ files:
   - dist/**/*
   - main.cjs
   - package.json
+  - '!node_modules/**'
 win:
   target:
     - nsis
     - portable
   artifactName: Quiver-Partical-Field-${version}-${arch}.${ext}
 nsis:
+  artifactName: Quiver-Partical-Field-${version}-${arch}-Setup.${ext}
   oneClick: false
   allowToChangeInstallationDirectory: true
   createDesktopShortcut: true
   createStartMenuShortcut: true
   shortcutName: Quiver Partical Field
+portable:
+  artifactName: Quiver-Partical-Field-${version}-${arch}-Portable.${ext}
